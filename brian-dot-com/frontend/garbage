@@ -1,0 +1,47 @@
+$.ajax({
+  type: 'GET',
+  url: 'http://api.tumblr.com/v2/blog/brianpgerson.tumblr.com/posts?api_key=oYJfQejhqA9Vw5bpB1ejFGzoHjUSM8aVKKUmqCaQTsj6KeujM0&offset=0',
+  data: { get_param: 'value' },
+  dataType: 'jsonp',
+  success: function (data) {
+    postsHandler(data);
+  }
+});
+
+$.ajax({
+  type: 'GET',
+  url: 'http://api.tumblr.com/v2/blog/brianpgerson.tumblr.com/posts?api_key=oYJfQejhqA9Vw5bpB1ejFGzoHjUSM8aVKKUmqCaQTsj6KeujM0&offset=20',
+  data: { get_param: 'value' },
+  dataType: 'jsonp',
+  success: function (data) {
+    postsHandler(data);
+  }
+});
+
+
+function postsHandler(data){
+  var postResponses = data.response.posts;
+  postResponses.forEach(function(post) {
+    var date = Date.parse(post.date);
+    var freshPost = new Post(post.title, post.body, post.post_url, date);
+    allPosts.push(freshPost);
+  });
+  if (allPosts.length === 28) {
+    debugger;
+    var sorted = allPosts.sort(function(a, b){ return a.date < b.date; });
+    sorted.forEach(function(post){
+      $.ajax({
+        type: 'POST',
+        url: '/posts',
+        data: { post: post },
+        dataType: 'json',
+        success: function (response) {
+          console.log("You did it! Data:" + response);
+        },
+        error: function() {
+          console.log("Uh oh");
+        }
+      });
+    });
+  }
+}
