@@ -69,11 +69,9 @@ Blog.prototype.tumblrPostHandler = function(data){
 
 Blog.prototype.compareTumblrToInternal = function (data, tumblrPosts) {
   var dates = data.map(function(post){ return post.date; });
-  debugger;
   var newPosts =
     tumblrPosts.filter(function(post) { return dates.indexOf(post.date) < 0; });
   newPosts.forEach(function(post){
-    debugger;
     this.posts.push(post);
     $.ajax({
       type: 'POST',
@@ -82,12 +80,14 @@ Blog.prototype.compareTumblrToInternal = function (data, tumblrPosts) {
       dataType: 'json',
       success: function (response) {
         console.log("You did it! Data:" + response);
+        this.postBuilder();
       },
       error: function() {
         console.log("Uh oh");
       }
     });
   }.bind(this));
+  this.postBuilder();
 };
 
 module.exports = Blog;

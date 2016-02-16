@@ -47,11 +47,12 @@
 	var Post = __webpack_require__ (1);
 	var Blog = __webpack_require__ (2);
 
-	$(function(){
-	  var $blog = $('#results');
-	  var blog = new Blog($blog);
-	  blog.postBuilder();
-
+	$(document).on('page:change', function(){
+	      var $blog = $('#results');
+	      if ($blog.length > 0) {
+	        debugger;
+	        var blog = new Blog($blog);
+	      }
 	});
 
 
@@ -145,11 +146,9 @@
 
 	Blog.prototype.compareTumblrToInternal = function (data, tumblrPosts) {
 	  var dates = data.map(function(post){ return post.date; });
-	  debugger;
 	  var newPosts =
 	    tumblrPosts.filter(function(post) { return dates.indexOf(post.date) < 0; });
 	  newPosts.forEach(function(post){
-	    debugger;
 	    this.posts.push(post);
 	    $.ajax({
 	      type: 'POST',
@@ -158,12 +157,14 @@
 	      dataType: 'json',
 	      success: function (response) {
 	        console.log("You did it! Data:" + response);
+	        this.postBuilder();
 	      },
 	      error: function() {
 	        console.log("Uh oh");
 	      }
 	    });
 	  }.bind(this));
+	  this.postBuilder();
 	};
 
 	module.exports = Blog;
