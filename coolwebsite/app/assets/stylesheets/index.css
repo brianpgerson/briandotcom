@@ -6,10 +6,10 @@ html {
 body {
   height: 100%;
   width: 100%;
-  background-image: url('https://images.unsplash.com/photo-1432250681869-3784e3d5a99f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=10db4f8a7344923e7c216351ebfe1bab');
+  background-image: url('https://images.unsplash.com/photo-1431965400057-a84b80cfdbff?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=497d291b990902624ab1321bef8590c8');
   background-size: cover;
 }
-
+/*https://images.unsplash.com/photo-1432250681869-3784e3d5a99f?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&s=10db4f8a7344923e7c216351ebfe1bab*/
 .circular-image {
   background-image: url('http://res.cloudinary.com/thadowg/image/upload/c_fill,h_550,w_550/v1457903742/im-brian.png');
   background-size: contain;
@@ -45,7 +45,7 @@ h1, h2, h3 {
 .main-header-text {
   padding: 0;
   background-color: transparent;
-  color: ghostwhite;
+  color: #333;
   float: left;
   display: inline-block;
   margin: 0 5%;
