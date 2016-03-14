@@ -59,17 +59,17 @@
 .top-weird-corner {
   width: 50px;
   height: 50px;
-  position: relative;
-  top: 17px;
-  left: 165px;
+  position: fixed;
+  top: 25px;;
+  left: 175px;
   overflow: hidden;
 }
 
 .bottom-weird-corner {
   width: 50px;
   height: 50px;
-  position: relative;
-  left: 17px;
-  top: 115px;
+  position: fixed;
+  left: 25px;
+  top: 175px;
   overflow: hidden;
 }
